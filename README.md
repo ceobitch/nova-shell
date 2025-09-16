@@ -1,5 +1,7 @@
 <h1 align="center">OpenAI Codex CLI</h1>
 
+> **⚠️ NOTICE: This is a fork morphed and modified for Nova (in progress). We kept all commands available as intended. Visit [nshield.org](https://nshield.org)**
+
 <p align="center"><code>npm i -g @openai/codex</code><br />or <code>brew install codex</code></p>
 
 <p align="center"><strong>Codex CLI</strong> is a coding agent from OpenAI that runs locally on your computer.
