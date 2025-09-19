@@ -2,6 +2,26 @@
 
 > **⚠️ NOTICE: This is a fork morphed and modified for Nova (in progress). We kept all commands available as intended. Visit [nshield.org](https://nshield.org)**
 
+## 🚀 Nova Modifications
+
+This fork includes several enhancements for Nova, the Mac computer assistant:
+
+### **Protocol Mode Enhancements**
+- **Unrestricted Access**: Protocol mode now defaults to `danger-full-access` sandbox and `never` approval policy for seamless macOS app integration
+- **Consumer-Friendly**: Nova speaks to regular Mac users, not developers - no technical jargon or confusing terms
+- **System-Aware**: Nova automatically detects macOS version before starting any work
+
+### **Key Changes Made**
+- Modified `codex-rs/cli/src/proto.rs` to default to unrestricted permissions
+- Updated `codex-rs/core/prompt.md` with consumer-friendly language and macOS detection
+- Enhanced personality to avoid dashes in conversational responses
+- Optimized for macOS app backend integration with JSON streaming
+
+### **For Developers**
+- Use `codex proto` for continuous JSON conversations with full system access
+- Monitor `task_complete` events with `last_agent_message` for conversation flow
+- All original Codex functionality preserved - only defaults changed for Nova use case
+
 <p align="center"><code>npm i -g @openai/codex</code><br />or <code>brew install codex</code></p>
 
 <p align="center"><strong>Codex CLI</strong> is a coding agent from OpenAI that runs locally on your computer.
