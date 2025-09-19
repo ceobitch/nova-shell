@@ -1,4 +1,5 @@
 use std::io::IsTerminal;
+use std::path::PathBuf;
 
 use clap::Parser;
 use codex_common::CliConfigOverrides;
@@ -7,6 +8,8 @@ use codex_core::ConversationManager;
 use codex_core::NewConversation;
 use codex_core::config::Config;
 use codex_core::config::ConfigOverrides;
+use codex_protocol::config_types::SandboxMode;
+use codex_protocol::protocol::AskForApproval;
 use codex_core::protocol::Event;
 use codex_core::protocol::EventMsg;
 use codex_core::protocol::Submission;
@@ -35,7 +38,12 @@ pub async fn run_main(opts: ProtoCli) -> anyhow::Result<()> {
         .parse_overrides()
         .map_err(anyhow::Error::msg)?;
 
-    let config = Config::load_with_cli_overrides(overrides_vec, ConfigOverrides::default())?;
+    let config = Config::load_with_cli_overrides(overrides_vec, ConfigOverrides {
+        sandbox_mode: Some(SandboxMode::DangerFullAccess),
+        approval_policy: Some(AskForApproval::Never),
+        cwd: Some(std::env::current_dir().unwrap_or_else(|_| PathBuf::from("/Users"))),
+        ..ConfigOverrides::default()
+    })?;
     // Use conversation_manager API to start a conversation
     let conversation_manager =
         ConversationManager::new(AuthManager::shared(config.codex_home.clone()));
